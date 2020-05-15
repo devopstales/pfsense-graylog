@@ -291,7 +291,7 @@
       "id": "6ce9fd60-0ed3-4a3f-9f9c-83360c576ffb",
       "data": {
         "name": "PFSENSE_LOG_DATA",
-        "pattern": "%{INT:rule},%{INT:sub_rule}?,,%{INT:tracker},%{WORD:iface},%{WORD:reason},%{WORD:action},%{WORD:direction},"
+        "pattern": "%{INT:rule},%{INT:sub_rule}?,,%{INT:tracker},%{GREEDYDATA:iface},%{WORD:reason},%{WORD:action},%{WORD:direction},"
       },
       "constraints": [
         {
