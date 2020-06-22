@@ -81,6 +81,22 @@ We start the graylog service again and this will create the index with this temp
 
 `#systemctl start graylog-server.service`
 
+# GeoIP Plugin activation
+In Graylog go to System->Configurations and:
+
+1. Change the order by Message processors, to have the following sequence:
+
+```
+1. AWS Instance Name Lookup
+2. Message Filter Chain
+3. Pipeline Processor
+4. GeoIP Resolver
+```
+
+This should look like:
+
+![Index](https://raw.githubusercontent.com/lephisto/pfsense-analytics/master/screenshots/SS_processorsequence.png)
+
 # Pipelines
 
 The pfsense logs that arrive at graylog, the date and the time are not sent to it, storing in the timestamp field the time they arrive at the graylog itself and this date and time is in UTC format so we must modify it so that it does not there are interpretation problems in grafana time format when displaying them.
