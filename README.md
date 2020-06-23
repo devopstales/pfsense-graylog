@@ -97,6 +97,16 @@ This should look like:
 
 ![Index](https://raw.githubusercontent.com/lephisto/pfsense-analytics/master/screenshots/SS_processorsequence.png)
 
+Enable end update Geo-Location Processor
+
+```
+cd /etc/graylog/server/
+wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz
+tar -xzf GeoLite2-City.tar.gz
+mv GeoLite2-City_*/GeoLite2-City.mmdb .
+```
+Then Update Geo-Location Processor Configuration to Enable Geo-Location processor 
+
 # Pipelines
 
 The pfsense logs that arrive at graylog, the date and the time are not sent to it, storing in the timestamp field the time they arrive at the graylog itself and this date and time is in UTC format so we must modify it so that it does not there are interpretation problems in grafana time format when displaying them.
@@ -153,8 +163,3 @@ We upload the downloaded file Upload .json file and associate it with the dataso
 We can already see the dashboard in action.
 
 ![Grafana](https://devopstales.github.io/img/include/graylog_pfsense4.png)
-
-
-
-
-
