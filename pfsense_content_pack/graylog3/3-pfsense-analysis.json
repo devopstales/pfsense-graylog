@@ -593,7 +593,7 @@
       "id": "a5ec652d-88b2-4813-9f94-9c55cca47791",
       "data": {
         "name": "PFSENSE_IPv6_SPECIFIC_DATA",
-        "pattern": "(?<ip_ver>(6)),%{BASE16NUM:ipv6_Flag1},%{WORD:ipv6_Flag2},%{WORD:flow_label},%{WORD:options},%{INT:protocol_id},%{INT:length},%{IPV6:src_ip},%{IPV6:dest_ip},%{WORD:ipv6_HPH},%{WORD:ipv6_padn},%{WORD:ipv6_Alert},?%{WORD:ipv6_Flag3}?,?%{WORD:ipv6_Flag4}?"
+        "pattern": "(?<ip_ver>(6)),%{BASE16NUM:ipv6_Flag1},%{WORD:ipv6_Flag2},%{WORD:flow_label},%{USERNAME:options},%{INT:protocol_id},?%{INT:protocol_id}?,%{INT:length},%{IPV6:src_ip},%{IPV6:dest_ip},?%{WORD:ipv6_HPH}?,?%{WORD:ipv6_padn}?,?%{WORD:ipv6_Alert}?,?%{WORD:ipv6_Flag3}?,?%{WORD:ipv6_Flag4}?"
       },
       "constraints": [
         {
