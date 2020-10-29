@@ -752,7 +752,7 @@
             },
             "condition_value": {
               "@type": "string",
-              "@value": "filterlog:"
+              "@value": "filterlog"
             },
             "order": {
               "@type": "integer",
