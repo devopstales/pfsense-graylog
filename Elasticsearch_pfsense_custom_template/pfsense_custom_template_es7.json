@@ -1,0 +1,97 @@
+{
+    "order": -1,
+    "index_patterns": [
+      "pfsense_*"
+    ],
+    "settings": {
+      "index": {
+        "analysis": {
+          "analyzer": {
+            "analyzer_keyword": {
+              "filter": "lowercase",
+              "tokenizer": "keyword"
+            }
+          }
+        }
+      }
+    },
+    "mappings": {
+      "_source": {
+        "enabled": true
+      },
+      "dynamic_templates": [
+        {
+          "internal_fields": {
+            "match": "gl2_*",
+            "mapping": {
+              "type": "keyword"
+            },
+            "match_mapping_type": "string"
+          }
+        },
+        {
+          "store_generic": {
+            "mapping": {
+              "type": "keyword"
+            },
+            "match_mapping_type": "string"
+          }
+        }
+      ],
+      "properties": {
+        "src_location": {
+          "type": "geo_point"
+        },
+        "gl2_processing_timestamp": {
+          "format": "uuuu-MM-dd HH:mm:ss.SSS",
+          "type": "date"
+        },
+        "gl2_accounted_message_size": {
+          "type": "long"
+        },
+        "dst_location": {
+          "type": "geo_point"
+        },
+        "gl2_receive_timestamp": {
+          "format": "uuuu-MM-dd HH:mm:ss.SSS",
+          "type": "date"
+        },
+        "full_message": {
+          "fielddata": false,
+          "analyzer": "standard",
+          "type": "text"
+        },
+        "streams": {
+          "type": "keyword"
+        },
+        "dest_ip_geolocation": {
+          "copy_to": "dst_location",
+          "type": "text"
+        },
+        "src_ip_geolocation": {
+          "copy_to": "src_location",
+          "type": "text"
+        },
+        "source": {
+          "fielddata": true,
+          "analyzer": "analyzer_keyword",
+          "type": "text"
+        },
+        "message": {
+          "fielddata": false,
+          "analyzer": "standard",
+          "type": "text"
+        },
+        "real_timestamp": {
+          "format": "uuuu-MM-dd HH:mm:ss.SSS",
+          "type": "date"
+        },
+        "timestamp": {
+          "format": "uuuu-MM-dd HH:mm:ss.SSS",
+          "type": "date"
+        }
+      }
+    },
+    "aliases": {}
+  }
+

@@ -1161,7 +1161,7 @@
               "id": "1",
               "meta": {},
               "settings": {
-                "size": 1000000
+                "size": 10000
               },
               "type": "raw_document"
             }
