@@ -1,0 +1,300 @@
+{
+    "extractors": [
+      {
+        "title": "pfSense filterlog: IPv6 TCP",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,pf_ipv6_class,pf_ipv6_flow,pf_ipv6_hop,pf_ipv6_protocol,pf_ipv6_protocol_id,length,src_ip,dest_ip,src_port,dest_port,data_length,tcp_flags,pf_tcp_sequence_number,pf_tcp_ack_number,pf_tcp_window,pf_tcp_urg,pf_tcp_options"
+            }
+          }
+        ],
+        "order": 2,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),6,.*,(?i)(tcp),.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv6 UDP",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,pf_ipv6_class,pf_ipv6_flow,pf_ipv6_hop,pf_ipv6_protocol,pf_ipv6_protocol_id,length,src_ip,dest_ip,src_port,dest_port,data_length"
+            }
+          }
+        ],
+        "order": 3,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),6,.*,(?i)(udp),.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv4 UDP",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,tos,pf_ipv4_ecn,ttl,id,offset,flags,proto_id,proto,length,src_ip,dest_ip,src_port,dest_port,data_length"
+            }
+          }
+        ],
+        "order": 1,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),4,.*,(?i)(udp),.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv4 ICMP Echo",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,tos,pf_ipv4_ecn,ttl,id,offset,flags,proto_id,proto,length,src_ip,dest_ip,pf_icmp_type,pf_icmp_id,pf_icmp_sequence"
+            }
+          }
+        ],
+        "order": 4,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),4,.*,(?i)(icmp),.*,(request|reply),.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv4 ICMP Unreachable Protocol",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,tos,pf_ipv4_ecn,ttl,id,offset,flags,proto_id,proto,length,src_ip,dest_ip,pf_icmp_type,pf_icmp_destination_ip,pf_icmp_protocol_id"
+            }
+          }
+        ],
+        "order": 5,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),4,.*,(?i)(icmp),.*,unreachproto,.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv4 ICMP Unreachable Port",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,tos,pf_ipv4_ecn,ttl,id,offset,flags,proto_id,proto,length,src_ip,dest_ip,pf_icmp_type,pf_icmp_destination_ip,pf_icmp_protocol_id,pf_icmp_port"
+            }
+          }
+        ],
+        "order": 6,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),4,.*,(?i)(icmp),.*,unreachport,.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv4 ICMP TStamp Reply",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,tos,pf_ipv4_ecn,ttl,id,offset,flags,proto_id,proto,length,src_ip,dest_ip,pf_icmp_type,pf_icmp_id,pf_icmp_sequence,pf_icmp_otime,pf_icmp_rtime,pf_icmp_ttime"
+            }
+          }
+        ],
+        "order": 10,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),4,.*,(?i)(icmp),.*,tstampreply,.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv4 ICMP Unreachable Other",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,tos,pf_ipv4_ecn,ttl,id,offset,flags,proto_id,proto,length,src_ip,dest_ip,pf_icmp_type,pf_icmp_description"
+            }
+          }
+        ],
+        "order": 7,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),4,.*,(?i)(icmp),.*,(unreach|timexceed|paramprob|redirect|maskreply),.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv4 TCP",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,tos,pf_ipv4_ecn,ttl,id,offset,flags,proto_id,proto,length,src_ip,dest_ip,src_port,dest_port,data_length,tcp_flags,pf_tcp_sequence_number,pf_tcp_ack_number,pf_tcp_window,pf_tcp_urg,pf_tcp_options"
+            }
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),4,.*,(?i)(tcp),.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv4 ICMP Need Frag",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,tos,pf_ipv4_ecn,ttl,id,offset,flags,proto_id,proto,length,src_ip,dest_ip,pf_icmp_type,pf_icmp_destination_ip,pf_icmp_mtu"
+            }
+          }
+        ],
+        "order": 8,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),4,.*,(?i)(icmp),.*,needfrag,.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv4 ICMP TStamp",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,tos,pf_ipv4_ecn,ttl,id,offset,flags,proto_id,proto,length,src_ip,dest_ip,pf_icmp_type,pf_icmp_id,pf_icmp_sequence"
+            }
+          }
+        ],
+        "order": 9,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),4,.*,(?i)(icmp),.*,tstamp,.*$"
+      },
+      {
+        "title": "pfSense filterlog: IPv4 ICMP Default",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "csv",
+            "config": {
+              "column_header": "rule,pf_subrule,pf_anchor,tracker,iface,reason,action,direction,ip_ver,tos,pf_ipv4_ecn,ttl,id,offset,flags,proto_id,proto,length,src_ip,dest_ip,pf_icmp_type,pf_icmp_description"
+            }
+          }
+        ],
+        "order": 11,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "FilterData",
+        "extractor_config": {
+          "regex_value": "^filterlog\\[?\\d+\\]:\\s+(.*)$"
+        },
+        "condition_type": "regex",
+        "condition_value": "^filterlog\\[?\\d+\\]:\\s+.*,(in|out),4,.*,(?i)(icmp),.*,(?!(request|reply|unreachproto|unreachport|unreach|timexceed|paramprob|redirect|maskreply|needfrag|tstamp|tstampreply)),.*$"
+      },
+      {
+        "title": "Source Port Name",
+        "extractor_type": "lookup_table",
+        "converters": [],
+        "order": 12,
+        "cursor_strategy": "copy",
+        "source_field": "src_port",
+        "target_field": "src_port_name",
+        "extractor_config": {
+          "lookup_table_name": "Service Port Translator"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "pfsense_nginx",
+        "extractor_type": "grok",
+        "converters": [],
+        "order": 14,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "",
+        "extractor_config": {
+          "grok_pattern": "%{DATA:pfsense_service}: %{IPORHOST:remote_addr} - (%{DATA:remote_user} )?- \\[%{HTTPDATE:access_time}\\] \\\"%{WORD:request_verb} %{DATA:request_path} HTTP/%{NUMBER:http_version}\\\" %{NUMBER:response_code} %{NUMBER:response_bytes} \\\"%{DATA:http_referer}\\\" \\\"%{DATA:http_user_agent}\\\"",
+          "named_captures_only": true
+        },
+        "condition_type": "string",
+        "condition_value": "nginx:"
+      },
+      {
+        "title": "Port to Service Name",
+        "extractor_type": "lookup_table",
+        "converters": [],
+        "order": 13,
+        "cursor_strategy": "copy",
+        "source_field": "dest_port",
+        "target_field": "PortServiceName",
+        "extractor_config": {
+          "lookup_table_name": "Service Port Translator"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      }
+    ],
+    "version": "4.0.6"
+  }

@@ -83,7 +83,7 @@
           "type": "text"
         },
         "real_timestamp": {
-          "format": "uuuu-MM-dd HH:mm:ss.SSS",
+          "format": "uuuu-MM-dd HH:mm:ss",
           "type": "date"
         },
         "timestamp": {
